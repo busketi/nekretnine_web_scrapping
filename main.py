@@ -297,24 +297,18 @@ if __name__ == "__main__":
     main_link = "https://www.halooglasi.com/"
 
     # Iterate over the elem_tip values
-    for elem_tip in ["prodaja-stanova", "izdavanje-stanova", "izdavanje-kuca", "prodaja-kuca"]:
-        url1 = "https://www.halooglasi.com/nekretnine/" + elem_tip + "/beograd"
-        url2 = "https://www.halooglasi.com/nekretnine/" + elem_tip + "/novi-sad"
-        url3 = "https://www.halooglasi.com/nekretnine/" + elem_tip + "/nis"
+    url1 = "https://www.halooglasi.com/nekretnine/prodaja-stanova/beograd"
 
-        # Create threads for each location
-        t1 = threading.Thread(target=MakeDataBase, args=(main_link, url1, proxy_list[:200], "db_" + elem_tip + "_beograd.db"))
-        t2 = threading.Thread(target=MakeDataBase, args=(main_link, url2, proxy_list[200:350], "db_" + elem_tip + "_novi-sad.db"))
-        t3 = threading.Thread(target=MakeDataBase, args=(main_link, url3, proxy_list[350:], "db_" + elem_tip + "_nis.db"))
-        
-        # Start the threads
-        t1.start()
-        t2.start()
-        t3.start()
 
-        # Wait for all threads to complete
-        t1.join()
-        t2.join()
-        t3.join()
+    # Create threads for each location
+    t1 = threading.Thread(target=MakeDataBase, args=(main_link, url1, proxy_list[:200], "db_prodaja-stanova_beograd.db"))
+    
+    # Start the threads
+    t1.start()
+
+
+    # Wait for all threads to complete
+    t1.join()
+
 
 
